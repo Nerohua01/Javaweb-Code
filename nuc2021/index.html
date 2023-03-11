@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人社保计算软件</title>
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		 
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		 
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script>
+			//JS代码放在这里
+			function calc(){
+				//1、获取用户输入的工资
+				sal = document.getElementById("salary").value;
+				salnum = parseInt(sal);
+				//2、计算
+				//养老保险
+				ylgr = salnum * 0.08; 
+				ylgs = salnum * 0.2;
+				
+				//医疗保险
+				ybgr = salnum * 0.02;
+				ybgs = salnum * 0.1;
+				
+				//失业保险
+				shiyegeren = salnum * 0.005;
+				shiyegongsi = salnum * 0.01;
+				
+				//生育保险
+				shengyu = salnum * 0.1;
+				
+				//工伤保险
+				gongshang = salnum * 0.05;
+				
+				//公积金
+				gjjgr = salnum * 0.12
+				gjjgs = salnum * 0.12;
+				
+				//个人缴纳金额
+				grjn = ylgr + ybgr + shiyegeren + gjjgr;
+				
+				//公司缴纳金额
+				gsjn = ylgs + ybgs + shiyegongsi + shengyu + gongshang + gjjgs;
+				
+				//合计缴纳
+				hjjn = grjn + gsjn;
+				
+				//3、把计算的结果放在单元格里显示
+				document.getElementById("ylgr").innerText=ylgr;
+				document.getElementById("ylgs").innerText=ylgs;
+				
+				document.getElementById("ybgr").innerText=ybgr;
+				document.getElementById("ybgs").innerText=ybgs;
+				
+				document.getElementById("shiyegeren").innerText=shiyegeren;
+				document.getElementById("shiyegongsi").innerText=shiyegongsi;
+				
+				document.getElementById("shengyu").innerText=shengyu;
+				
+				document.getElementById("gongshang").innerText=gongshang;
+				
+				document.getElementById("gjjgr").innerText=gjjgr;
+				document.getElementById("gjjgs").innerText=gjjgs;
+				
+				document.getElementById("grjn").innerText=grjn;
+				
+				document.getElementById("gsjn").innerText=gsjn;
+				
+				document.getElementById("hjjn").innerText=hjjn;
+			}
+			function checkForm(sal){
+				if(!/[^0-9]/g.salnum(value)){
+					alert("输入错误!")
+					return false;
+				}
+				return true;
+			}
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="text-center">
+				<img width="200px" src="img/nuclogo.png"/>
+			</div>
+			<div>
+				<table class="table table-bordered">
+					<tr>
+						<td colspan="3">
+							<input class="form-control" type="text" placeholder="请输入工资" id="salary">
+						</td>
+						<td>
+							<button onclick="calc()" class="btn btn-primary">计算</button>
+						</td>
+					</tr>
+					<tr>
+						<td>个人缴纳金额</td>
+						<td id="grjn"></td>
+						<td>公司缴纳金额</td>
+						<td id="gsjn"></td>
+					</tr>
+					<tr>
+						<td>合计缴纳</td>
+						<td id="hjjn"></td>
+						<td>账户总额</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<table class="table table-bordered text-center">
+					<tr class="bg-primary">
+						<td>缴费项目</td>
+						<td>个人缴纳</td>
+						<td>公司缴纳</td>
+					</tr>
+					<tr>
+						<td>养老</td>
+						<td id="ylgr"></td>
+						<td id="ylgs"></td>
+					</tr>
+					<tr>
+						<td>医疗</td>
+						<td id="ybgr"></td>
+						<td id="ybgs"></td>
+					</tr>
+					<tr>
+						<td>失业</td>
+						<td id="shiyegeren"></td>
+						<td id="shiyegongsi"></td>
+					</tr>
+					<tr>
+						<td>生育</td>
+						<td></td>
+						<td id="shengyu"></td>
+					</tr>
+					<tr>
+						<td>工伤</td>
+						<td></td>
+						<td id="gongshang"></td>
+					</tr>
+					<tr>
+						<td>公积金</td>
+						<td id="gjjgr"></td>
+						<td id="gjjgs"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
